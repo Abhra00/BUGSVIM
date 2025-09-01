@@ -92,11 +92,12 @@ vim.api.nvim_set_hl(0, 'NotifyWARNIcon',    { bg = 'none', fg = colors.base0A })
 vim.api.nvim_set_hl(0, 'NotifyTRACEIcon',   { bg = 'none', fg = colors.base0B })
 vim.api.nvim_set_hl(0, 'NotifyDEBUGIcon',   { bg = 'none', fg = colors.base0B })
 
--- Dashboard highlights (Alpha)
-vim.api.nvim_set_hl(0, 'AlphaHeader',   { bg = 'none', fg = colors.base0E })
-vim.api.nvim_set_hl(0, 'AlphaFooter',   { bg = 'none', fg = colors.base0A })
-vim.api.nvim_set_hl(0, 'AlphaButtons',  { bg = 'none', fg = colors.base0D })
-vim.api.nvim_set_hl(0, 'AlphaShortcut', { bg = 'none', fg = colors.base08 })
+-- Dashboard highlights (Mini Starter)
+vim.api.nvim_set_hl(0, 'MiniStarterHeader',     { bg = 'none', fg = colors.base0D })
+vim.api.nvim_set_hl(0, 'MiniStarterFooter',     { bg = 'none', fg = colors.base0D })
+vim.api.nvim_set_hl(0, 'MiniStarterSection',    { bg = 'none', fg = colors.base0E })
+vim.api.nvim_set_hl(0, 'MiniStarterItemPrefix', { bg = 'none', fg = colors.base0D })
+vim.api.nvim_set_hl(0, 'MiniStarterItem',       { bg = 'none', fg = colors.base05 })
 
 -- Render markdown highlights
 vim.api.nvim_set_hl(0, 'Headline1Bg',          { fg = colors.base00, bg = colors.base08, bold = true })
