@@ -31,12 +31,25 @@ return {
   dependencies = {
     'rcarriga/nvim-dap-ui',
     'nvim-neotest/nvim-nio',
+    { 'leoluz/nvim-dap-go', ft = 'go' },
+  },
+  keys = {
+    -- stylua: ignore start
+    { '<leader>dt', function() require('dap').toggle_breakpoint() end, desc = '[D]ebug [T]oggle Breakpoint' },
+    { '<leader>ds', function() require('dap').continue() end,          desc = '[D]ebug [S]tart' },
+    { '<leader>dc', function() require('dapui').close() end,          desc = '[D]ebug [C]lose' },
+    { '<leader>dn', function() require('dap').step_over() end,        desc = '[D]ebug Step [N]ext' },
+    { '<leader>di', function() require('dap').step_into() end,        desc = '[D]ebug Step [I]nto' },
+    { '<leader>do', function() require('dap').step_out() end,         desc = '[D]ebug Step [O]ut' },
+    -- stylua: ignore end
   },
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
+    local godap = require 'dap-go'
 
-    dapui.setup()
+    dapui.setup() -- Set up dapui
+    godap.setup() -- Set up go debugger
 
     dap.configurations.java = {
       {
@@ -59,14 +72,5 @@ return {
     dap.listeners.before.event_exited['dapui_config'] = function()
       dapui.close()
     end
-    -- set keymaps
-    -- stylua: ignore start
-    vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint, { desc = '[D]ebug [T]oggle Breakpoint' })
-    vim.keymap.set('n', '<leader>ds', dap.continue, { desc = '[D]ebug [S]tart' })
-    vim.keymap.set('n', '<leader>dc', dapui.close, { desc = '[D]ebug [C]lose' })
-    vim.keymap.set('n', '<leader>dn', function() require('dap').step_over() end, { desc = '[D]ebug Step [N]ext' })
-    vim.keymap.set('n', '<leader>di', function() require('dap').step_into() end, { desc = '[D]ebug Step [I]nto' })
-    vim.keymap.set('n', '<leader>do', function() require('dap').step_out() end, { desc = '[D]ebug Step [O]ut' })
-    -- stylua: ignore end
   end,
 }

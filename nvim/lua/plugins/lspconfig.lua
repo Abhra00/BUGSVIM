@@ -202,6 +202,15 @@ return {
       dockerls = {},
       sqls = {},
       bashls = {},
+      gopls = {
+        settings = {
+          completeUnimported = true,
+          usePlaceholders = true,
+          analyses = {
+            unusedparams = true,
+          },
+        },
+      },
       lua_ls = {
         settings = {
           Lua = {
@@ -245,6 +254,7 @@ return {
       'jdtls', -- Java language server
       'java-debug-adapter', -- Java debugging tool
       'java-test', -- Also used for java debugging
+      'delve', -- Go debugger
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

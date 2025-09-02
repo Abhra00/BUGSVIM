@@ -1,6 +1,6 @@
 return {
   'nvimtools/none-ls.nvim',
-  event = { "BufReadPre", "BufNewFile" },
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     'nvimtools/none-ls-extras.nvim',
     'jayp0521/mason-null-ls.nvim', -- ensure dependencies are installed
@@ -18,15 +18,21 @@ return {
         'shfmt', -- Shell formatter
         'checkmake', -- linter for Makefiles
         'google-java-format', -- Fomatter for java
+        'gofumpt', -- Formatter for go
+        'goimports-reviser', -- Import organizer for go
+        'golangci-lint', -- Linter for go
         -- 'stylua', -- lua formatter; Already installed via Mason
       },
       automatic_installation = true,
     }
 
     local sources = {
-      require("none-ls.code_actions.eslint_d"),
-      require("none-ls.diagnostics.eslint_d"),
+      require 'none-ls.code_actions.eslint_d',
+      require 'none-ls.diagnostics.eslint_d',
       diagnostics.checkmake,
+      diagnostics.golangci_lint,
+      formatting.gofumpt,
+      formatting.goimports_reviser,
       formatting.prettier.with { filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html', 'css', 'json', 'yaml', 'markdown' } },
       formatting.stylua,
       formatting.shfmt.with { args = { '-i', '4' } },

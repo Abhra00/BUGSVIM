@@ -31,6 +31,7 @@ return {
         'regex',
         'bash',
         'gitignore',
+        'go',
       },
       -- make sure highlighting it anabled
       highlight = { enable = true },
