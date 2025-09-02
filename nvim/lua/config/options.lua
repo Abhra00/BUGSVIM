@@ -64,7 +64,6 @@ vim.opt.fillchars:append {
 
 -- Set list chars
 vim.opt.listchars = {
-  space = '·',
   tab = '󰶻 ',
   eol = '↵',
   nbsp = '␣',
