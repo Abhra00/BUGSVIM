@@ -43,6 +43,9 @@ vim.keymap.set('v', 'p', '"_dP', { noremap = true, silent = true })
 -- Live preview
 vim.keymap.set('n', '<leader>lp', '<cmd>LivePreview start<CR>', { desc = '[L]ive [P]riview Start' })
 
+-- Duplicate the above line without changing cursor position
+vim.keymap.set({ 'n', 'i' }, '<C-`>', '<cmd>copy .<CR>', { silent = true, desc = 'Duplicate line without moving cursor' })
+
 -- Floating terminal
 -- stylua: ignore
 vim.keymap.set('n', '<leader>tt', function() require('utils.floatterm').float_term() end, { desc = '[T]oggle [T]erminal' })
