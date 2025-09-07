@@ -6,8 +6,8 @@
 #### DASHBOARD
 ![dashboard](assets/dashboard.png)
 
-#### TELESCOPE
-![telescope](assets/telescope.png)
+#### FZF-LUA
+![fzf-lua](assets/fzf-lua.png)
 
 #### NOICEUI
 ![noice](assets/noice.png)

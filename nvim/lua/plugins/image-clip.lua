@@ -7,28 +7,19 @@ return {
     {
       '<leader>if',
       function()
-        local telescope = require 'telescope.builtin'
-        local actions = require 'telescope.actions'
-        local action_state = require 'telescope.actions.state'
+        local fzf = require 'fzf-lua'
+        local img_clip = require 'img-clip'
 
-        telescope.find_files {
-          attach_mappings = function(_, map)
-            local function embed_image(prompt_bufnr)
-              local entry = action_state.get_selected_entry()
-              local filepath = entry[1]
-              actions.close(prompt_bufnr)
-
-              local img_clip = require 'img-clip'
+        fzf.files {
+          actions = {
+            ['default'] = function(selected, opts)
+              local filepath = selected[1]:gsub('^[^%w/\\]*%s*', '')
               img_clip.paste_image(nil, filepath)
-            end
-
-            map('i', '<CR>', embed_image)
-            map('n', '<CR>', embed_image)
-            return true
-          end,
+            end,
+          },
         }
       end,
-      desc = '[I]mage from Telescope',
+      desc = '[I]mage picker with FzfLua',
     },
   },
   opts = {},

@@ -29,17 +29,17 @@ return {
         },
         {
           name = 'Open Notes',
-          action = 'lua require("telescope.builtin").find_files({cwd = "~/Documents/Notes/", prompt_title = "Open Notes"})',
+          action = 'lua require("fzf-lua").files({ cwd = "~/Documents/Notes/", prompt = "NOTES ❱ " })',
           section = 'Files',
         },
         {
           name = 'Find Files',
-          action = 'lua require("telescope.builtin").find_files()',
+          action = 'lua require("fzf-lua").files()',
           section = 'Files',
         },
         {
           name = 'Recent Files',
-          action = 'lua require("telescope.builtin").oldfiles()',
+          action = 'lua require("fzf-lua").oldfiles()',
           section = 'Files',
         },
         {
@@ -60,7 +60,7 @@ return {
       },
 
       header = headers.tsukinvim,
-      footer = " 2025 ❱ BUGS | CHAOS ❱ CODE ❱ COSMOS",
+      footer = ' 2025 ❱ BUGS | CHAOS ❱ CODE ❱ COSMOS',
 
       content_hooks = {
         -- starter.gen_hook.adding_bullet(),

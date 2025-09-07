@@ -1,6 +1,6 @@
 return {
   'MeanderingProgrammer/render-markdown.nvim',
-  ft = 'markdown',
+  file_types = { 'markdown', 'FzfPreview' },
   opts = {
     bullet = {
       enabled = true,
