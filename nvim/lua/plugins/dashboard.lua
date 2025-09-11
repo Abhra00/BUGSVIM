@@ -29,7 +29,7 @@ return {
         },
         {
           name = 'Open Notes',
-          action = 'lua require("fzf-lua").files({ cwd = "~/Documents/Notes/", prompt = "NOTES ❱ " })',
+          action = 'lua require("fzf-lua").files({ cwd = "~/Documents/Notes/", prompt = "NOTES  " })',
           section = 'Files',
         },
         {
