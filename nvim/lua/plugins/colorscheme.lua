@@ -3,6 +3,6 @@ return {
   lazy = false,
   priority = 1000,
   init = function()
-    vim.cmd 'colorscheme base16-wal'
+    vim.cmd[[colorscheme base16-tokyonight-night]]
   end,
 }
