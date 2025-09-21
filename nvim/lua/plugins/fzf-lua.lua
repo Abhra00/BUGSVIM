@@ -41,11 +41,13 @@ return {
       -- Set fzf opts
       fzf_opts = {
         ['--ansi'] = true,
+        ['--style'] = 'default',
         ['--info'] = 'inline-right',
         ['--height'] = '100%',
-        ['--layout'] = 'reverse',
-        ['--border'] = 'sharp',
+        ['--layout'] = 'reverse-list',
+        ['--border'] = 'none',
         ['--highlight-line'] = true,
+        ['--pointer'] = '██',
       },
       -- Set fzf colors
       fzf_colors = {
