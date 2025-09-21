@@ -36,7 +36,7 @@ require('lazy').setup {
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { 'base16-tokyonight-night' } },
+  install = { colorscheme = { 'base16-blackmetal' } },
   change_detection = {
     -- Don't notify us every time a change is made to the configuration
     notify = false,

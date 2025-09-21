@@ -9,13 +9,13 @@ local colorUtil = require 'utils.colorManipulation'
 
 -- Core highlights
 vim.api.nvim_set_hl(0, 'Normal',       { bg = 'none' })
-vim.api.nvim_set_hl(0, 'NormalFloat',  { bg = colorUtil.darken(colors.base00, 0.3), fg = colors.base05 })
-vim.api.nvim_set_hl(0, 'FloatBorder',  { bg = colorUtil.darken(colors.base00, 0.3), fg = colorUtil.darken(colors.base00, 0.3) })
+vim.api.nvim_set_hl(0, 'NormalFloat',  { bg = 'none', fg = colors.base05 })
+vim.api.nvim_set_hl(0, 'FloatBorder',  { bg = 'none', fg = colors.base03 })
 vim.api.nvim_set_hl(0, 'FloatTitle',   { bg = colors.base0E, fg = colors.base00, bold = true })
 vim.api.nvim_set_hl(0, 'Pmenu',        { link = "NormalFloat" })
-vim.api.nvim_set_hl(0, 'PmenuSel',     { bg = colors.base01, fg = 'none' })
-vim.api.nvim_set_hl(0, 'PmenuThumb',   { bg = colors.base02, fg = colors.base05 })
-vim.api.nvim_set_hl(0, 'PmenuSbar',    { bg = colors.base02, fg = colors.base05 })
+vim.api.nvim_set_hl(0, 'PmenuSel',     { bg = colors.base08, fg = colors.base00 })
+vim.api.nvim_set_hl(0, 'PmenuThumb',   { bg = colors.base03, fg = 'none' })
+vim.api.nvim_set_hl(0, 'PmenuSbar',    { bg = 'none', fg = colors.base03 })
 vim.api.nvim_set_hl(0, 'Terminal',     { bg = 'none' })
 vim.api.nvim_set_hl(0, 'EndOfBuffer',  { bg = 'none' })
 vim.api.nvim_set_hl(0, 'FoldColumn',   { bg = 'none' })
@@ -30,23 +30,23 @@ vim.api.nvim_set_hl(0, 'StatusLine',   { bg = 'none' })
 vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'none' })
 
 -- Fzf-Lua highlights
-local fzfbg      = colorUtil.darken(colors.base00, 0.3)
-local fzfbglight = colorUtil.darken(colors.base00, 0.25)
-local fzfborder  = colorUtil.darken(colors.base00, 0.3)
-local fzfselbg   = colorUtil.darken(colors.base01, 0.3)
+local fzfbg      = 'none'
+local fzfbglight = 'none'
+local fzfborder  = colors.base03
+local fzfselbg   = colors.base03
 
 vim.api.nvim_set_hl(0, "FzfLuaBg",               { fg = 'none', bg = fzfbg })
 vim.api.nvim_set_hl(0, "FzfLuaNormal",           { fg = 'none', bg = fzfbg })
 vim.api.nvim_set_hl(0, "FzfLuafg",               { fg = colors.base05, bg = 'none' })
 vim.api.nvim_set_hl(0, "FzfLuaHeader",           { fg = colors.base08, bg = 'none' })
-vim.api.nvim_set_hl(0, "FzfLuaBorder",           { fg = fzfborder, bg = fzfborder })
+vim.api.nvim_set_hl(0, "FzfLuaBorder",           { fg = fzfborder, bg = 'none' })
 vim.api.nvim_set_hl(0, "FzfLuaMarker",           { fg = colors.base08, bg = 'none' })
 vim.api.nvim_set_hl(0, "FzfLuaPointer",          { fg = colors.base0D, bg = 'none' })
 vim.api.nvim_set_hl(0, "FzfLuaPrompt",           { fg = colors.base08, bg = 'none' })
 vim.api.nvim_set_hl(0, "FzfLuaSpinner",          { fg = colors.base0E, bg = 'none' })
-vim.api.nvim_set_hl(0, "FzfLuaHl",               { fg = colors.base0D, bg = 'none' })
-vim.api.nvim_set_hl(0, "FzfLuaHlPlus",           { fg = colors.base09, bg = 'none' })
-vim.api.nvim_set_hl(0, "FzfLuaSelFg",            { fg = colors.base0D, bg = 'none' })
+vim.api.nvim_set_hl(0, "FzfLuaHl",               { fg = colors.base08, bg = 'none' })
+vim.api.nvim_set_hl(0, "FzfLuaHlPlus",           { fg = colors.base0A, bg = 'none' })
+vim.api.nvim_set_hl(0, "FzfLuaSelFg",            { fg = colors.base05, bg = 'none' })
 vim.api.nvim_set_hl(0, "FzfLuaSelBg",            { fg = 'none', bg = fzfselbg })
 vim.api.nvim_set_hl(0, "FzfLuaTitle",            { fg = colors.base00, bg = colors.base0D })
 vim.api.nvim_set_hl(0, "FzfLuaTitleFlags",       { fg = colors.base00, bg = colors.base0B, bold = true })
@@ -174,14 +174,14 @@ vim.api.nvim_set_hl(0, 'NoiceCompletionItemKindText',        { link = 'NoiceComp
 vim.api.nvim_set_hl(0, 'NoiceCompletionItemKindUnit',        { link = 'NoiceCompletionItemKindDefault' })
 vim.api.nvim_set_hl(0, 'NoiceCompletionItemKindValue',       { link = 'NoiceCompletionItemKindDefault' })
 vim.api.nvim_set_hl(0, 'NoiceCompletionItemKindVariable',    { link = 'NoiceCompletionItemKindDefault' })
-vim.api.nvim_set_hl(0, 'NoiceConfirmBorder',                 { bg = colorUtil.darken(colors.base00, 0.3), fg = colorUtil.darken(colors.base00, 0.3) })
-vim.api.nvim_set_hl(0, 'NoiceConfirm',                       { bg = colorUtil.darken(colors.base00, 0.3), fg = colors.base0B })
+vim.api.nvim_set_hl(0, 'NoiceConfirmBorder',                 { bg = 'none', fg = colors.base03 })
+vim.api.nvim_set_hl(0, 'NoiceConfirm',                       { bg = 'none', fg = colors.base0B })
 vim.api.nvim_set_hl(0, 'NoiceFormatConfirm',                 { bg = colors.base01, fg = colors.base05 })
 
 -- Blink-Cmp highlights
 vim.api.nvim_set_hl(0, 'BlinkCmpMenuBorder',        { link = 'FloatBorder' }) -- link to float border
 vim.api.nvim_set_hl(0, 'BlinkCmpDocBorder',         { link = 'FloatBorder' }) -- link to float border
-vim.api.nvim_set_hl(0, 'BlinkCmpLabelMatch',        { fg = colorUtil.blend(colors.base09, colors.base0E, 0.7) }) -- blend orange and magenta
+vim.api.nvim_set_hl(0, 'BlinkCmpLabelMatch',        { fg = colors.base08 }) -- red
 vim.api.nvim_set_hl(0, 'BlinkCmpGhostText',         { fg = colors.base02 }) -- light black
 vim.api.nvim_set_hl(0, 'BlinkCmpDocSeparator',      { fg = colors.base0D, bg = 'none' }) -- separate doc and detail with a blue line
 vim.api.nvim_set_hl(0, 'BlinkCmpKindText',          { fg = colors.base0B }) -- green

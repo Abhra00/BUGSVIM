@@ -180,7 +180,7 @@ return {
         -- Some useful glyphs:
         -- https://www.nerdfonts.com/cheat-sheet
         --          
-        section_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         component_separators = { left = '', right = '' },
         disabled_filetypes = { statusline = { 'ministarter' } },
         always_divide_middle = true,
@@ -243,7 +243,7 @@ return {
               -- Standard unicode symbol for when LSP is done:
               done = ' ',
               -- Delimiter inserted between LSP names:
-              separator = '',
+              separator = ' ',
             },
             -- List of LSP names to ignore (e.g., `null-ls`):
             ignore_lsp = { 'null-ls' },
