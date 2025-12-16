@@ -5,7 +5,7 @@
 --   > github :https://github.com/mfussenegger/nvim-dap
 --   > github :https://github.com/rcarriga/nvim-dap-ui
 --   > github :https://github.com/nvim-neotest/nvim-nio
---   > githb  :https://github.com/mfussenegger/nvim-dap-python
+--   > github :https://github.com/mfussenegger/nvim-dap-python
 -- ================================================================================================
 
 
@@ -45,13 +45,13 @@ return {
       'nvim-neotest/nvim-nio',
     },
     keys = {
-    -- stylua: ignore start
-    { '<leader>dt', function() require('dap').toggle_breakpoint() end, desc = 'Debug Toggle Breakpoint' },
-    { '<leader>ds', function() require('dap').continue() end, desc = 'Debug Start' },
-    { '<leader>dc', function() require('dapui').close() end, desc = 'Debug Close' },
-    { '<leader>dn', function() require('dap').step_over() end, desc = 'Debug Step Next' },
-    { '<leader>di', function() require('dap').step_into() end, desc = 'Debug Step Into' },
-    { '<leader>do', function() require('dap').step_out() end, desc = 'Debug Step Out' },
+      -- stylua: ignore start
+      { '<leader>dt', function() require('dap').toggle_breakpoint() end, desc = 'Debug Toggle Breakpoint' },
+      { '<leader>ds', function() require('dap').continue() end, desc = 'Debug Start' },
+      { '<leader>dc', function() require('dapui').close() end, desc = 'Debug Close' },
+      { '<leader>dn', function() require('dap').step_over() end, desc = 'Debug Step Next' },
+      { '<leader>di', function() require('dap').step_into() end, desc = 'Debug Step Into' },
+      { '<leader>do', function() require('dap').step_out() end, desc = 'Debug Step Out' },
       -- stylua: ignore end
     },
     config = function()
