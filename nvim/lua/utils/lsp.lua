@@ -39,6 +39,15 @@ M.on_attach = function(event)
       end, 50)
     end, opts 'Organize imports')
   end
+
+  -- Incremental renaming with inc-rename.nvim
+  keymap('n', '<leader>crn', function()
+    local inc_rename = require 'inc_rename'
+    return ':' .. inc_rename.config.cmd_name .. ' ' .. vim.fn.expand '<cword>'
+  end, {
+    expr = true,
+    desc = '[LSP]: Rename (inc-rename.nvim)',
+  })
 end
 
 return M
