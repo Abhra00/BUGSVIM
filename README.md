@@ -1,3 +1,5 @@
-##### TSUKIYO NEOVIM
+##### BUGS'S NEOVIM CONFIGURATION
 
-<img src="/assets/preview.png" width="100%" />
+
+- Preview
+    <img src="/assets/preview.png" width="100%" />
