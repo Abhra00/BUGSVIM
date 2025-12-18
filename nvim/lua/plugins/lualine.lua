@@ -47,10 +47,20 @@ return {
       cond = hide_in_width,
     }
 
+    local trouble = require 'trouble'
+    local trouble_symbols = trouble.statusline {
+      mode = 'symbols',
+      groups = {},
+      title = false,
+      filter = { range = true },
+      format = '{kind_icon}{symbol.name:Normal}',
+      hl_group = 'lualine_c_normal',
+    }
+
     require('lualine').setup {
       options = {
         icons_enabled = true,
-        theme = 'tokyonight', -- Set theme based on environment variable
+        theme = 'tokyonight-night', -- Set theme
         -- Some useful glyphs:
         -- https://www.nerdfonts.com/cheat-sheet
         --        
@@ -62,7 +72,13 @@ return {
       sections = {
         lualine_a = { mode },
         lualine_b = { 'branch' },
-        lualine_c = { filename },
+        lualine_c = {
+          filename,
+          {
+            trouble_symbols.get,
+            cond = trouble_symbols.has,
+          },
+        },
         lualine_x = {
           Snacks.profiler.status(),
           {
@@ -89,7 +105,7 @@ return {
         lualine_z = {},
       },
       tabline = {},
-      extensions = { 'fugitive' },
+      extensions = { 'lazy' },
     }
   end,
 }
