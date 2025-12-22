@@ -11,14 +11,8 @@
 
 -- Set up icons
 -- stylua: ignore start
-local icons = {
-  Stopped               = { '', 'DiagnosticWarn', 'DapStoppedLine' },
-  Breakpoint            = '',
-  BreakpointCondition   = '',
-  BreakpointRejected    = { '', 'DiagnosticError' },
-  LogPoint              = '󰚃',
-}
-for name, sign in pairs(icons) do
+local icons = require('config.icons')
+for name, sign in pairs(icons.dap) do
   sign = type(sign) == 'table' and sign or { sign }
   vim.fn.sign_define('Dap' .. name, {
     text    = sign[1] --[[@as string]] .. ' ',

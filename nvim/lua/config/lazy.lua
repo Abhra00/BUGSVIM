@@ -20,6 +20,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- [NOTE] This is recommended place for setting up options, leader keys, kaymaps & autocmds
+-- Setup options, leader keys, keymaps & autocmds
 require 'config.options'
 require 'config.globals'
 require 'config.keymaps'

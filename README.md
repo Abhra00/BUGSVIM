@@ -3,6 +3,6 @@
 
 - Preview
  - Dashboard
-    <img src="/assets/preview.png" width="100%" />
-- Coding
-    <img src="/assets/preview-coding.png" width="100%" />
+    <img src="/assets/preview-dashboard.png" width="100%" />
+- Editor
+    <img src="/assets/preview-editor.png" width="100%" />

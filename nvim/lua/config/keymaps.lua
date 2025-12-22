@@ -27,6 +27,12 @@ vim.keymap.set('n', '<C-Down>', '<Cmd>resize -2<CR>', { desc = 'Decrease window 
 vim.keymap.set('n', '<C-Left>', '<Cmd>vertical resize -2<CR>', { desc = 'Decrease window width' })
 vim.keymap.set('n', '<C-Right>', '<Cmd>vertical resize +2<CR>', { desc = 'Increase window width' })
 
+-- Tab management
+vim.keymap.set('n', '<leader>te', ':tabedit', { desc = 'Create new tab' })
+vim.keymap.set('n', '<leader>tx', '<Cmd>tabclose<CR>', { desc = 'Close tab' })
+vim.keymap.set('n', '<tab>', '<Cmd>tabnext<CR>', { desc = 'Next tab' })
+vim.keymap.set('n', '<s-tab>', '<Cmd>tabprev<CR>', { desc = 'Previous tab' })
+
 -- Better indenting in visual mode
 vim.keymap.set('v', '<', '<gv', { desc = 'Indent left and reselect' })
 vim.keymap.set('v', '>', '>gv', { desc = 'Indent right and reselect' })
@@ -36,6 +42,3 @@ vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines and keep cursor position'
 
 -- Keep last yanked when pasting
 vim.keymap.set('v', 'p', '"_dP', { noremap = true, silent = true })
-
--- Quick config editing
-vim.keymap.set('n', '<leader>rc', '<Cmd>e ~/.config/nvim/init.lua<CR>', { desc = 'Edit config' })
