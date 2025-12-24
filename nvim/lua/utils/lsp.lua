@@ -40,13 +40,13 @@ M.on_attach = function(event)
         bufnr = bufnr,
       }
       vim.defer_fn(function()
-        vim.lsp.buf.format { bufnr = bufnr }
+        require('conform').format { bufnr = bufnr }
       end, 50)
     end, opts 'Organize imports')
   end
 
   -- Incremental renaming with inc-rename.nvim
-  keymap('n', '<leader>crn', function()
+  keymap('n', '<leader>rN', function()
     local inc_rename = require 'inc_rename'
     return ':' .. inc_rename.config.cmd_name .. ' ' .. vim.fn.expand '<cword>'
   end, {
