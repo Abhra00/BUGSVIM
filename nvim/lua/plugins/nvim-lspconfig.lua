@@ -14,6 +14,7 @@ return {
     -- LSP/DAP/Linter installer & manager
     {
       'mason-org/mason.nvim',
+      cmd = "Mason",
       opts = {
         PATH = 'prepend',
         ui = {
