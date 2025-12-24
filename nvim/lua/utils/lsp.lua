@@ -93,11 +93,15 @@ M.on_attach = function(client_or_event, bufnr_or_nil)
   if vim.lsp.codelens then
     Snacks.util.lsp.on({ method = 'textDocument/codeLens', bufnr = bufnr }, function(buf)
       vim.lsp.codelens.refresh()
-      local group = vim.api.nvim_create_augroup('lsp_codelens_' .. buf, { clear = true })
-      vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-        group = group,
+
+      vim.keymap.set('n', '<leader>cr', vim.lsp.codelens.refresh, {
         buffer = buf,
-        callback = vim.lsp.codelens.refresh,
+        desc = 'Refresh Codelens',
+      })
+
+      vim.keymap.set({ 'n', 'x' }, '<leader>cc', vim.lsp.codelens.run, {
+        buffer = buf,
+        desc = 'Run Codelens',
       })
     end)
   end
