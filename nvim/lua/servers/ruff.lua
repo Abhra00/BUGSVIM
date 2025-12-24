@@ -1,22 +1,19 @@
 -- ================================================================================================
--- TITLE : pyright (Python Language Server) LSP Setup
+-- TITLE : ruff (Additional Python Language Server) LSP Setup
 -- LINKS :
---   > github: https://github.com/microsoft/pyright
+--   > github: https://github.com/astral-sh/ruff
 -- ================================================================================================
 
 --- @param capabilities table LSP client capabilities (typically from blink-cmp or similar)
 --- @return nil This function doesn't return a value, it configures the LSP server
 return function(capabilities)
-  vim.lsp.config('pyright', {
+  vim.lsp.config('ruff', {
     capabilities = capabilities,
     settings = {
-      pyright = {
-        disableOrganizeImports = false,
-        analysis = {
-          useLibraryCodeForTypes = true,
-          autoSearchPaths = true,
-          diagnosticMode = 'workspace',
-          autoImportCompletions = true,
+      cmd_env = { RUFF_TRACE = 'messages' },
+      init_options = {
+        settings = {
+          logLevel = 'error',
         },
       },
     },

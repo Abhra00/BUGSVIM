@@ -114,8 +114,7 @@ opt.guicursor = {
 }
 
 -- Folding Settings
-opt.foldmethod = 'expr' -- Use expression for folding
-opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- Use treesitter for folding
+opt.foldmethod = 'indent' -- Use indent for folding
 opt.foldlevel = 99 -- Keep all folds open by default
 opt.foldtext = '' -- Use default fold text
 

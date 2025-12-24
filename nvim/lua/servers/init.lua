@@ -6,12 +6,12 @@ local capabilities = require('blink.cmp').get_lsp_capabilities(default_capabilit
 
 -- Language Server Protocol (LSP)
 require 'servers.lua_ls'(capabilities)
-require 'servers.pyright'(capabilities)
+require 'servers.basedpyright'(capabilities)
+require 'servers.ruff'(capabilities)
 require 'servers.ts_ls'(capabilities)
 require 'servers.tailwindcss'(capabilities)
 require 'servers.clangd'(capabilities)
 require 'servers.bashls'(capabilities)
-require 'servers.rust_analyzer'(capabilities)
 
 -- Enable lsp servers
 vim.lsp.enable {
@@ -20,6 +20,6 @@ vim.lsp.enable {
   'tailwindcss',
   'clangd',
   'bashls',
-  'rust_analyzer',
-  'pyright',
+  'basedpyright',
+  'ruff',
 }

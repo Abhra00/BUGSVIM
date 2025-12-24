@@ -16,10 +16,28 @@ return function(capabilities)
           globals = { 'vim' },
         },
         workspace = {
+          checkThirdParty = false,
           library = {
             vim.fn.expand '$VIMRUNTIME/lua',
             vim.fn.expand '$XDG_CONFIG_HOME' .. '/nvim/lua',
           },
+        },
+        codeLens = {
+          enable = true,
+        },
+        completion = {
+          callSnippet = 'Replace',
+        },
+        doc = {
+          privateName = { '^_' },
+        },
+        hint = {
+          enable = true,
+          setType = false,
+          paramType = true,
+          paramName = 'Disable',
+          semicolon = 'Disable',
+          arrayIndex = 'Disable',
         },
       },
     },

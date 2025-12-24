@@ -8,7 +8,6 @@ vim.api.nvim_create_autocmd('User', {
   pattern = 'SnacksDashboardOpened',
   callback = function(args)
     vim.b[args.buf].minitrailspace_disable = true
-    vim.b[args.buf].minicursorword_disable = true
   end,
 })
 
@@ -44,12 +43,4 @@ local lsp_on_attach_group = vim.api.nvim_create_augroup('LspMappings', {})
 vim.api.nvim_create_autocmd('LspAttach', {
   group = lsp_on_attach_group,
   callback = on_attach,
-})
-
--- For starting or attaching jdtls server
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'java',
-  callback = function(args)
-    require('servers.jdtls').setup()
-  end,
 })

@@ -47,6 +47,7 @@ return {
         wo = { wrap = true }, -- Wrap notifications
       },
     },
+    zen = { enabled = true },
   },
   -- stylua: ignore start
   keys = {
@@ -186,6 +187,8 @@ return {
         Snacks.toggle.inlay_hints():map '<leader>uh'
         Snacks.toggle.indent():map '<leader>ug'
         Snacks.toggle.dim():map '<leader>uD'
+        Snacks.toggle.zoom():map('<leader>wm'):map '<leader>uZ'
+        Snacks.toggle.zen():map '<leader>uz'
       end,
     })
   end,
