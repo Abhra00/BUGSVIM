@@ -10,24 +10,17 @@ local on_attach = require('utils.lsp').on_attach
 local get_codelldb_adapter = function()
   local mason_registry = require 'mason-registry'
   if mason_registry.is_installed 'codelldb' then
-    local codelldb = mason_registry.get_package 'codelldb'
-    local ok, install_path = pcall(function()
-      return codelldb:get_install_path()
-    end)
-    local extension_path
-    if ok and install_path then
-      extension_path = install_path .. '/extension/'
-    else
-      print '[error] getting codelldb install path, using fallback...'
-      extension_path = vim.fn.expand '~/.local/share/nvim/mason/packages/codelldb/extension/'
-    end
-    local codelldb_path = extension_path .. 'adapter/codelldb'
-    local base_path = extension_path .. 'lldb/lib/liblldb'
-    ---@diagnostic disable-next-line: undefined-field (os_uname)
-    local this_os = vim.uv.os_uname().sysname
-    local liblldb_path = base_path .. (this_os == 'Linux' and '.so' or '.dylib')
+    local mason_data = vim.fn.stdpath 'data' .. '/mason'
+    local pkg_name = 'codelldb'
+    local install_dir = mason_data .. '/packages/' .. pkg_name
+    local extension_path = install_dir .. '/extension/'
+    local adapter_path = extension_path .. 'adapter/codelldb'
+    local lib_base = extension_path .. 'lldb/lib/liblldb'
+    local os_name = vim.loop.os_uname().sysname
+    local lib_ext = os_name == 'Linux' and '.so' or '.dylib'
+    local lib_path = lib_base .. lib_ext
     local cfg = require 'rustaceanvim.config'
-    return cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
+    return cfg.get_codelldb_adapter(adapter_path, lib_path)
   end
 end
 

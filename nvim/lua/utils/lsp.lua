@@ -86,22 +86,31 @@ M.on_attach = function(client_or_event, bufnr_or_nil)
 
   -- Inlay Hints
   Snacks.util.lsp.on({ method = 'textDocument/inlayHint', bufnr = bufnr }, function(buf)
-    vim.lsp.inlay_hint.enable(true, { bufnr = buf })
+    if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buftype == '' then
+      vim.lsp.inlay_hint.enable(true, { bufnr = buf })
+    end
   end)
 
   -- Code Lens
   if vim.lsp.codelens then
     Snacks.util.lsp.on({ method = 'textDocument/codeLens', bufnr = bufnr }, function(buf)
+      -- Refresh the codelens once
       vim.lsp.codelens.refresh()
-
+      -- Keymaps
       vim.keymap.set('n', '<leader>cr', vim.lsp.codelens.refresh, {
         buffer = buf,
         desc = 'Refresh Codelens',
       })
-
       vim.keymap.set({ 'n', 'x' }, '<leader>cc', vim.lsp.codelens.run, {
         buffer = buf,
         desc = 'Run Codelens',
+      })
+      -- Auto refresh code lens only when buffer content changes or when entering buffer
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
+        buffer = buf,
+        callback = function()
+          vim.lsp.codelens.refresh { bufnr = buf }
+        end,
       })
     end)
   end
