@@ -13,7 +13,6 @@ return {
       lua = { 'luacheck' },
       c = { 'cpplint' },
       cpp = { 'cpplint' },
-      rust = { 'clippy' },
       python = { 'ruff' },
     }
 

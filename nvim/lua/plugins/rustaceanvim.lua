@@ -5,54 +5,73 @@
 --   > github : https://github.com/mrcjkb/rustaceanvim
 -- ================================================================================================
 
-local on_attach = require('utils.lsp').on_attach
-
-local get_codelldb_adapter = function()
-  local mason_registry = require 'mason-registry'
-  if mason_registry.is_installed 'codelldb' then
-    local mason_data = vim.fn.stdpath 'data' .. '/mason'
-    local pkg_name = 'codelldb'
-    local install_dir = mason_data .. '/packages/' .. pkg_name
-    local extension_path = install_dir .. '/extension/'
-    local adapter_path = extension_path .. 'adapter/codelldb'
-    local lib_base = extension_path .. 'lldb/lib/liblldb'
-    local os_name = vim.loop.os_uname().sysname
-    local lib_ext = os_name == 'Linux' and '.so' or '.dylib'
-    local lib_path = lib_base .. lib_ext
-    local cfg = require 'rustaceanvim.config'
-    return cfg.get_codelldb_adapter(adapter_path, lib_path)
-  end
-end
-
-local config = function()
-  local settings = {
-    tools = {
-      hover_actions = {
-        auto_focus = true,
-      },
-    },
+return {
+  'mrcjkb/rustaceanvim',
+  ft = { 'rust' },
+  opts = {
+    dap = {},
     server = {
-      on_attach = on_attach,
-      settings = {
+      on_attach = function(client, bufnr)
+        require('utils.lsp').on_attach(client, bufnr)
+        vim.keymap.set('n', '<leader>cR', function()
+          vim.cmd.RustLsp 'codeAction'
+        end, { buffer = bufnr })
+        vim.keymap.set('n', '<leader>dr', function()
+          vim.cmd.RustLsp 'debuggables'
+        end, { buffer = bufnr })
+      end,
+      default_settings = {
         ['rust-analyzer'] = {
           cargo = {
             allFeatures = true,
+            loadOutDirsFromCheck = true,
+            buildScripts = {
+              enable = true,
+            },
+          },
+          checkOnSave = {
+            command = 'clippy',
+          },
+          diagnostics = {
+            enable = true,
+          },
+          procMacro = {
+            enable = true,
+          },
+          files = {
+            exclude = {
+              '.direnv',
+              '.git',
+              '.jj',
+              '.github',
+              '.gitlab',
+              'bin',
+              'node_modules',
+              'target',
+              'venv',
+              '.venv',
+            },
+            watcher = 'client',
           },
         },
       },
     },
-    dap = {},
-  }
-  local ok, adapter = pcall(get_codelldb_adapter)
-  if ok then
-    settings.dap.adapter = adapter
-  end
-  vim.g.rustaceanvim = settings
-end
-
-return {
-  'mrcjkb/rustaceanvim',
-  version = '^6',
-  lazy = false,
-  config = config,
+  },
+  config = function(_, opts)
+    local has_mason = pcall(require, 'mason')
+    if has_mason then
+      local codelldb = vim.fn.exepath 'codelldb'
+      if codelldb ~= '' then
+        local is_linux = (vim.uv or vim.loop).os_uname().sysname == 'Linux'
+        local lib_ext = is_linux and '.so' or '.dylib'
+        local mason_root = vim.fn.stdpath 'data' .. '/mason'
+        local library_path = mason_root .. '/packages/codelldb/extension/lldb/lib/liblldb' .. lib_ext
+        opts.dap.adapter = require('rustaceanvim.config').get_codelldb_adapter(codelldb, library_path)
+      end
+    end
+    vim.g.rustaceanvim = vim.tbl_deep_extend('force', vim.g.rustaceanvim or {}, opts or {})
+    if vim.fn.executable 'rust-analyzer' == 0 then
+      vim.notify('rust-analyzer not found in PATH', vim.log.levels.ERROR, { title = 'rustaceanvim' })
+    end
+  end,
 }
