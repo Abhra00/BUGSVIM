@@ -23,22 +23,33 @@ M.on_attach = function(client_or_event, bufnr_or_nil)
   end
 
   local keymap = vim.keymap.set
-  local function opts(desc)
-    return { noremap = true, silent = true, buffer = bufnr, desc = '[LSP]:' .. desc }
+  local function opts(desc, extra)
+    local base = { noremap = true, silent = true, buffer = bufnr, desc = '[LSP]:' .. desc }
+    return extra and vim.tbl_extend('force', base, extra) or base
   end
 
   -- stylua: ignore start
   -- Native LSP Keymaps
-  keymap("n", "<leader>gd", vim.lsp.buf.definition, opts("Go to definition"))
-  keymap("n", "<leader>gS", function() vim.cmd("vsplit") vim.lsp.buf.definition() end, opts("Go to definition (split)"))
-  keymap("n", "<leader>gD", vim.lsp.buf.declaration, opts("Go to declaration"))
+  keymap("n", "gl", function() Snacks.picker.lsp_config() end, opts("Lsp Info"))
+  keymap("n", "gd", function() Snacks.picker.lsp_definitions() end, opts("Goto Definition"))
+  keymap("n", "gS", function() vim.cmd("vsplit") vim.lsp.buf.definition() end, opts("Go to definition (split)"))
+  keymap("n", "gD", function() Snacks.picker.lsp_declarations() end, opts("Goto Declaration"))
+  keymap("n", "gr", function() Snacks.picker.lsp_references() end, opts("References", { nowait = true }))
+  keymap("n", "gI", function() Snacks.picker.lsp_implementations() end, opts("Goto Implementation"))
+  keymap("n", "gy", function() Snacks.picker.lsp_type_definitions() end, opts("Goto T[y]pe Definition"))
+  keymap("n", "gai", function() Snacks.picker.lsp_incoming_calls() end, opts("C[a]lls Incoming"))
+  keymap("n", "gao", function() Snacks.picker.lsp_outgoing_calls() end, opts("C[a]lls Outgoing"))
+  keymap("n", "K", vim.lsp.buf.hover, opts("Hover documentation"))
+  keymap("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, opts("LSP Symbols"))
+  keymap("n", "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, opts("LSP Workspace Symbols"))
   keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
   keymap("n", "<leader>rn", vim.lsp.buf.rename, opts("Rename symbol"))
   keymap("n", "<leader>D", vim.diagnostic.open_float, opts("Line diagnostics"))
   keymap("n", "<leader>C", function() vim.diagnostic.open_float(nil, { scope = "cursor" }) end, opts("Cursor diagnostics"))
   keymap("n", "<leader>[d", function () vim.diagnostic.jump({count = -1}) end, opts("Previous diagnostic"))
   keymap("n", "<leader>]d", function () vim.diagnostic.jump({count = 1}) end, opts("Next diagnostic"))
-  keymap("n", "K", vim.lsp.buf.hover, opts("Hover documentation"))
+  keymap("n", "<a-n>", function() Snacks.words.jump(vim.v.count1, true) end, opts("Next Reference"))
+  keymap("n", "<a-p>", function() Snacks.words.jump(-vim.v.count1, true) end, opts("Prev Reference"))
   -- stylua: ignore end
 
   -- Incremental renaming with inc-rename.nvim

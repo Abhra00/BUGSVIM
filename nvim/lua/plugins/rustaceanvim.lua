@@ -13,12 +13,10 @@ return {
     server = {
       on_attach = function(client, bufnr)
         require('utils.lsp').on_attach(client, bufnr)
-        vim.keymap.set('n', '<leader>cR', function()
-          vim.cmd.RustLsp 'codeAction'
-        end, { buffer = bufnr })
-        vim.keymap.set('n', '<leader>dr', function()
-          vim.cmd.RustLsp 'debuggables'
-        end, { buffer = bufnr })
+        -- stylua: ignore start
+        vim.keymap.set('n', '<leader>cR', function() vim.cmd.RustLsp('codeAction') end, { buffer = bufnr, desc = 'Rust code action' })
+        vim.keymap.set('n', '<leader>dr', function() vim.cmd.RustLsp('debuggables') end, { buffer = bufnr, desc = 'Rust debuggables' })
+        -- stylua: ignore end
       end,
       default_settings = {
         ['rust-analyzer'] = {

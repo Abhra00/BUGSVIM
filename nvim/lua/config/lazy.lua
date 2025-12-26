@@ -35,8 +35,13 @@ require('lazy').setup {
   },
   rtp = {
     disabled_plugins = {
+      'gzip',
       'netrw',
       'netrwPlugin',
+      'tarPlugin',
+      'tohtml',
+      'tutor',
+      'zipPlugin',
     },
   },
   -- Configure any other settings here. See the documentation for more details.
