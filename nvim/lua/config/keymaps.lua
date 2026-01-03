@@ -1,44 +1,76 @@
--- ================================================================================================
--- TITLE: NeoVim keymaps
--- ABOUT: sets some quality-of-life keymaps
--- ================================================================================================
+-- Keymaps
+-- NOTE: Keymaps are automatically loaded on the VeryLazy event
 
--- Center screen when jumping
-vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next search result (centered)' })
-vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous search result (centered)' })
-vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Half page down (centered)' })
-vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Half page up (centered)' })
+-- Discipline
+local discipline = require("bugs.discipline")
+discipline.cowboy()
 
--- Buffer navigation
-vim.keymap.set('n', '<leader>bn', '<Cmd>bnext<CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<leader>bp', '<Cmd>bprevious<CR>', { desc = 'Previous buffer' })
+-- For convenience
+local keymap = vim.keymap
+local opts = { noremap = true, silent = true }
 
--- Better window navigation
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move to bottom window' })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move to top window' })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move to right window' })
+-- Do things without affecting the registers
+keymap.set("n", "x", '"_x')
+keymap.set("n", "<Leader>p", '"0p')
+keymap.set("n", "<Leader>P", '"0P')
+keymap.set("v", "<Leader>p", '"0p')
+keymap.set("n", "<Leader>c", '"_c')
+keymap.set("n", "<Leader>C", '"_C')
+keymap.set("v", "<Leader>c", '"_c')
+keymap.set("v", "<Leader>C", '"_C')
+keymap.set("n", "<Leader>d", '"_d')
+keymap.set("n", "<Leader>D", '"_D')
+keymap.set("v", "<Leader>d", '"_d')
+keymap.set("v", "<Leader>D", '"_D')
 
--- Splitting & Resizing
-vim.keymap.set('n', '<leader>sv', '<Cmd>vsplit<CR>', { desc = 'Split window vertically' })
-vim.keymap.set('n', '<leader>sh', '<Cmd>split<CR>', { desc = 'Split window horizontally' })
-vim.keymap.set('n', '<C-Up>', '<Cmd>resize +2<CR>', { desc = 'Increase window height' })
-vim.keymap.set('n', '<C-Down>', '<Cmd>resize -2<CR>', { desc = 'Decrease window height' })
-vim.keymap.set('n', '<C-Left>', '<Cmd>vertical resize -2<CR>', { desc = 'Decrease window width' })
-vim.keymap.set('n', '<C-Right>', '<Cmd>vertical resize +2<CR>', { desc = 'Increase window width' })
+-- Increment/Decrement
+keymap.set("n", "+", "<C-a>")
+keymap.set("n", "-", "<C-x>")
+
+-- Delete a word backwards
+keymap.set("n", "dw", 'vb"_d')
+
+-- Select all
+keymap.set("n", "<C-a>", "gg<S-v>G")
+
+-- Disable continuations
+keymap.set("n", "<Leader>o", "o<Esc>^Da", opts)
+keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
+
+-- Jumplist
+keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- Tab management
-vim.keymap.set('n', '<leader>te', ':tabedit', { desc = 'Create new tab' })
-vim.keymap.set('n', '<leader>tx', '<Cmd>tabclose<CR>', { desc = 'Close tab' })
-vim.keymap.set('n', '<tab>', '<Cmd>tabnext<CR>', { desc = 'Next tab' })
-vim.keymap.set('n', '<s-tab>', '<Cmd>tabprev<CR>', { desc = 'Previous tab' })
+keymap.set("n", "te", ":tabedit")
+keymap.set("n", "<Tab>", "<Cmd>tabnext<CR>", opts)
+keymap.set("n", "<S-Tab>", "<Cmd>tabprev<CR>", opts)
 
--- Better indenting in visual mode
-vim.keymap.set('v', '<', '<gv', { desc = 'Indent left and reselect' })
-vim.keymap.set('v', '>', '>gv', { desc = 'Indent right and reselect' })
+-- Split window
+keymap.set("n", "ss", "<Cmd>split<CR>", opts)
+keymap.set("n", "sv", "<Cmd>vsplit<CR>", opts)
 
--- Better J behavior
-vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines and keep cursor position' })
+-- Move window
+keymap.set("n", "sh", "<C-w>h")
+keymap.set("n", "sj", "<C-w>j")
+keymap.set("n", "sk", "<C-w>k")
+keymap.set("n", "sl", "<C-w>l")
 
--- Keep last yanked when pasting
-vim.keymap.set('v', 'p', '"_dP', { noremap = true, silent = true })
+-- Resize window
+keymap.set("n", "<C-w><Left>", "<C-w><")
+keymap.set("n", "<C-w><Right>", "<C-w>>")
+keymap.set("n", "<C-w><Up>", "<C-w>+")
+keymap.set("n", "<C-w><Down>", "<C-w>-")
+
+-- Diagnostics
+keymap.set("n", "<C-j>", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end, opts)
+
+keymap.set("n", "<C-k>", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, opts)
+
+-- Hex to hsl
+keymap.set("n", "<leader>r", function()
+  require("bugs.hsl").replaceHexWithHSL()
+end)
