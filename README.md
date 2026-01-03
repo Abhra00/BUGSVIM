@@ -1,8 +1,8 @@
-##### BUGS'S NEOVIM CONFIGURATION
+# BUGS'S NEOVIM CONFIGURATION
 
+### Preview
 
-- Preview
- - Dashboard
-    <img src="/assets/preview-dashboard.png" width="100%" />
+- Dashboard
+  <img src="/assets/preview-dashboard.png" width="100%" />
 - Editor
-    <img src="/assets/preview-editor.png" width="100%" />
+  <img src="/assets/preview-editor.png" width="100%" />
