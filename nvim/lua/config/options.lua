@@ -53,3 +53,7 @@ vim.filetype.add({
     mdx = "mdx",
   },
 })
+
+-- Lazyvim python optiomns
+vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_ruff = "ruff"

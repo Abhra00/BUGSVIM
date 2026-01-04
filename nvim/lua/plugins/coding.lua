@@ -5,7 +5,6 @@ return {
     cmd = "IncRename",
     config = true,
   },
-
   -- Go forward/backward with square brackets
   {
     "nvim-mini/mini.bracketed",
@@ -21,7 +20,6 @@ return {
       })
     end,
   },
-
   -- Better increase/descrease
   {
     "monaqa/dial.nvim",
