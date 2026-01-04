@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+---@diagnostic disable: unused-local
 return {
   -- Tools
   {
@@ -15,13 +17,47 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      diagnostics = { virtual_text = { prefix = "icons" } },
       inlay_hints = { enabled = false },
       -- LSP Server Settings
-      ---@alias lazyvim.lsp.Config vim.lsp.Config|{mason?:boolean, enabled?:boolean, keys?:LazyKeysLspSpec[]}
-      ---@type table<string, lazyvim.lsp.Config|boolean>
       servers = {
         cssls = {},
         html = {},
+        lua_ls = {
+          settings = {
+            Lua = {
+              misc = {},
+              hover = { expandAlias = false },
+              type = {
+                castNumberToInteger = true,
+                inferParamType = true,
+              },
+              diagnostics = {
+                disable = { "incomplete-signature-doc", "trailing-space", "missing-local-export-doc" },
+                -- enable = false,
+                groupSeverity = {
+                  strong = "Warning",
+                  strict = "Warning",
+                },
+                groupFileStatus = {
+                  ["ambiguity"] = "Opened",
+                  ["await"] = "Opened",
+                  ["codestyle"] = "None",
+                  ["duplicate"] = "Opened",
+                  ["global"] = "Opened",
+                  ["luadoc"] = "Opened",
+                  ["redefined"] = "Opened",
+                  ["strict"] = "Opened",
+                  ["strong"] = "Opened",
+                  ["type-check"] = "Opened",
+                  ["unbalanced"] = "Opened",
+                  ["unused"] = "Opened",
+                },
+                unusedLocalExclude = { "_*" },
+              },
+            },
+          },
+        },
         vtsls = {
           settings = {
             javascript = {
