@@ -3,6 +3,6 @@
 ### Preview
 
 - Dashboard
-  <img src="/assets/preview-dashboard.png" width="95%" />
+  <img src="/assets/preview-dashboard.png" width="100%" />
 - Editor
-  <img src="/assets/preview-editor.png" width="95%" />
+  <img src="/assets/preview-editor.png" width="100%" />
