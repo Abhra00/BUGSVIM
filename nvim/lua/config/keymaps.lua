@@ -42,6 +42,7 @@ keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- Tab management
 keymap.set("n", "te", ":tabedit")
+keymap.set("n", "tx", "<Cmd>tabclose<CR>", opts)
 keymap.set("n", "<Tab>", "<Cmd>tabnext<CR>", opts)
 keymap.set("n", "<S-Tab>", "<Cmd>tabprev<CR>", opts)
 
