@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-doc-name
 -- Colorscheme
 return {
   "craftzdog/solarized-osaka.nvim",
