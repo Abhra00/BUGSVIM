@@ -7,6 +7,7 @@ return {
         "css-lsp",
         "luacheck",
         "rust-analyzer",
+	"selene",
         "shellcheck",
       })
     end,
