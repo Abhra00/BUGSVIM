@@ -1,4 +1,5 @@
 ---@diagnostic disable: undefined-doc-name
+---@diagnostic disable: inject-field
 -- Colorscheme
 return {
   "craftzdog/solarized-osaka.nvim",
@@ -12,12 +13,11 @@ return {
       ---@param highlights Highlights
       ---@param colors ColorScheme
       on_highlights = function(highlights, colors)
-        ---@diagnostic disable: inject-field
-        -- LineNr
-        highlights.LineNr = { fg = colors.yellow700 }
-        -- Tabline
-        highlights.TabLineFill = { fg = colors.base0, bg = transparent and colors.none or colors.base02 }
         -- stylua: ignore start
+        -- LineNr
+        highlights.LineNr                        = { fg = colors.yellow700 }
+        -- Tabline
+        highlights.TabLineFill                   = { fg = colors.base0, bg = transparent and colors.none or colors.base02 }
         -- Snacks Notifier
         highlights.SnacksNotifierDebug           = { fg = colors.fg, bg = transparent and colors.none or colors.bg }
         highlights.SnacksNotifierBorderDebug     = { fg = colors.base01, bg = transparent and colors.none or colors.bg }
