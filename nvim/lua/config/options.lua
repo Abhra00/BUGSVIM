@@ -1,8 +1,6 @@
 -- Options
 -- NOTE: Options are automatically loaded before lazy.nvim startup
 
-vim.g.mapleader = " " -- Map leader key to space
-
 vim.opt.encoding = "utf-8" -- Character encoding
 vim.opt.fileencoding = "utf-8" -- File character encoding
 vim.opt.number = true -- Line numbers
@@ -54,6 +52,9 @@ vim.filetype.add({
   },
 })
 
--- Lazyvim python optiomns
+-- Lazyvim python options
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
+
+-- Lazyvim rust options
+vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
