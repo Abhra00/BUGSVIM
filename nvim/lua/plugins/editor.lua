@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-doc-name
 return {
   -- Disable flash
   {
@@ -18,7 +19,8 @@ return {
     "brenoprata10/nvim-highlight-colors",
     event = "BufReadPre",
     opts = {
-      render = "background",
+      render = "virtual",
+      virtual_symbol = "■",
       enable_hex = true,
       enable_short_hex = true,
       enable_rgb = true,

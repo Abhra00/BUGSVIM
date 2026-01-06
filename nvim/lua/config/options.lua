@@ -30,6 +30,12 @@ vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitright = true -- Put new windows right of current
 vim.opt.splitkeep = "cursor" -- Keep cursor position when splitting
 vim.opt.mouse = "" -- Disable mouse support
+vim.opt.list = true -- Show invisible characters
+vim.opt.listchars = {
+  tab = "» ", -- Tab character
+  trail = "·", -- Trailing spaces
+  nbsp = "␣", -- Non-breaking space
+}
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])

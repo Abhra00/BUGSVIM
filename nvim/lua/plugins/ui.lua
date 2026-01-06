@@ -102,7 +102,29 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
+      -- Pretty time
+      local pretty_time = function()
+        local hour = tonumber(os.date("%H"))
+        local clocks = {
+          "󱑊 ", -- 12
+          "󱐿 ", -- 1
+          "󱑀 ", -- 2
+          "󱑁 ", -- 3
+          "󱑂 ", -- 4
+          "󱑃 ", -- 5
+          "󱑄 ", -- 6
+          "󱑅 ", -- 7
+          "󱑆 ", -- 8
+          "󱑇 ", -- 9
+          "󱑈 ", -- 10
+          "󱑉 ", -- 11
+        }
+        -- Set icons
+        local icon = clocks[(hour % 12) + 1]
+        return icon .. os.date("%R")
+      end
       opts.options.theme = "solarized-osaka"
+      opts.sections.lualine_z = { pretty_time }
     end,
   },
   -- Dashboard
