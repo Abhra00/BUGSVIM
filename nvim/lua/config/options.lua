@@ -58,6 +58,9 @@ vim.filetype.add({
   },
 })
 
+-- Blink cmp
+vim.g.lazyvim_blink_main = false
+
 -- Lazyvim picker
 vim.g.lazyvim_picker = "snacks"
 
