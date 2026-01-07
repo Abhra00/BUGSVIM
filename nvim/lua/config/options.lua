@@ -58,6 +58,9 @@ vim.filetype.add({
   },
 })
 
+-- Lazyvim picker
+vim.g.lazyvim_picker = "snacks"
+
 -- Lazyvim python options
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"

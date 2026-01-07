@@ -23,15 +23,14 @@ keymap.set("n", "<Leader>D", '"_D')
 keymap.set("v", "<Leader>d", '"_d')
 keymap.set("v", "<Leader>D", '"_D')
 
--- Increment/Decrement
-keymap.set("n", "+", "<C-a>")
-keymap.set("n", "-", "<C-x>")
+-- Keep last yanked when pasting
+keymap.set("v", "p", '"_dP', opts)
 
 -- Delete a word backwards
 keymap.set("n", "dw", 'vb"_d')
 
 -- Select all
-keymap.set("n", "<C-a>", "gg<S-v>G")
+keymap.set("n", "<C-S-a>", "gg<S-v>G")
 
 -- Disable continuations
 keymap.set("n", "<Leader>o", "o<Esc>^Da", opts)
@@ -39,6 +38,7 @@ keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
 
 -- Jumplist
 keymap.set("n", "<C-m>", "<C-i>", opts)
+keymap.set("n", "<C-,>", "<C-o>", opts)
 
 -- Tab management
 keymap.set("n", "te", ":tabedit")
